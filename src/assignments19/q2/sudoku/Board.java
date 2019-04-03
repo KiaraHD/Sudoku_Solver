@@ -185,6 +185,70 @@ public class Board {
 
         }
         Out.print("Das Soduko ist richtig");
-    return true;
+        return true;
+    }
+
+    public boolean isValidRow(String row[]) {
+
+
+        for (int i = 0; i < 9; i++) {
+            int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
+
+            switch (row[i]) {
+
+                case "1":
+                    count1++;
+                    break;
+                case "2":
+                    count2++;
+                    break;
+                case "3":
+                    count3++;
+                    break;
+                case "4":
+                    count4++;
+                    break;
+                case "5":
+                    count5++;
+                    break;
+                case "6":
+                    count6++;
+                    break;
+                case "7":
+                    count7++;
+                    break;
+                case "8":
+                    count8++;
+                    break;
+                case "9":
+                    count9++;
+                    break;
+            }
+            if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
+
+                Out.println("fehler das sudoku ist falsch");
+                return false;
+
+            }
+
+
+        }
+        Out.print("Das Soduko ist richtig");
+
+        return true;
+    }
+
+
+    public void readRow(String row[]) {
+
+        row = new String[9];
+
+        String tmp = In.readLine();
+
+        row = tmp.split(" ");
+
+        isValidRow(row);
+
     }
 }
+
