@@ -12,12 +12,9 @@ public class SudokuSolver {
 
         In.open(filename);
 
-
         board.readField();
         board.printField();
         board.checkBoard();
-
-
 
     }
 
