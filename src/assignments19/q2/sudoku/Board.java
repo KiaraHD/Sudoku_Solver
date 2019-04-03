@@ -37,7 +37,7 @@ public class Board {
         }
     }
 
-    public void checkBoard() {
+    public boolean checkBoard() {
 
         //checks row
         for (int j = 0; j < 9; j++) {
@@ -80,7 +80,7 @@ public class Board {
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
                 Out.println("fehler das sudoku ist falsch");
-                return;
+                return false;
             }
         }
         //check colums
@@ -127,7 +127,7 @@ public class Board {
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
                 Out.println("fehler das sudoku ist falsch");
-                return;
+                return false;
 
             }
 
@@ -178,12 +178,13 @@ public class Board {
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
                 Out.println("fehler das sudoku ist falsch");
-                return;
+                return false;
 
             }
 
 
         }
         Out.print("Das Soduko ist richtig");
+    return true;
     }
 }
