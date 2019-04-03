@@ -223,6 +223,7 @@ public class Board {
                 case "9":
                     count9++;
                     break;
+                default: return false;
             }
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
