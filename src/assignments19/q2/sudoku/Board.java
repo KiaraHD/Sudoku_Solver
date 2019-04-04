@@ -171,9 +171,7 @@ public class Board {
                         count9++;
                         break;
                 }
-
             }
-
 
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
@@ -181,8 +179,6 @@ public class Board {
                 return false;
 
             }
-
-
         }
         Out.print("Das Soduko ist richtig");
         return true;
@@ -191,7 +187,7 @@ public class Board {
     public boolean isValidRow(String row[]) {
 
 
-            int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
+        int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
         for (int i = 0; i < 9; i++) {
 
             switch (row[i]) {
@@ -223,7 +219,8 @@ public class Board {
                 case "9":
                     count9++;
                     break;
-                default: return false;
+                default:
+                    return false;
             }
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
@@ -231,8 +228,6 @@ public class Board {
                 return false;
 
             }
-
-
         }
         Out.print("Das Soduko ist richtig");
 
@@ -242,14 +237,41 @@ public class Board {
 
     public void readRow(String row[]) {
 
-        row = new String[9];
 
+        String row[] = new String[9];
         String tmp = In.readLine();
 
         row = tmp.split(" ");
 
-        isValidRow(row);
+    }
+
+    public void checkField() {
+
+        int i = 0;
+
+        String[] row = new String[9];
+
+        readRow(row);
+        while (i < 8 && isValidRow(row) == true) {
+
+            readRow(row);
+            isValidRow(row);
+
+            i++;
+        }
+
+    }
+
+    public void readColum() {
+
+
+    }
+
+
+    public void isValidColum() {
+
 
     }
 }
+
 

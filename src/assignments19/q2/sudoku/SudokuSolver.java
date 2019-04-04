@@ -16,9 +16,10 @@ public class SudokuSolver {
 //        board.printField();
 //        board.checkBoard();
 
-        String[] row = new String[9];
+//        String[] row = new String[9];
 
-        board.readRow(row);
+        board.checkField();
+//        board.readRow(row);
 
 
     }
