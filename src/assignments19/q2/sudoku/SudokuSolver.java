@@ -20,7 +20,7 @@ public class SudokuSolver {
 
         board.checkField();
 //        board.readRow(row);
-
+//        board.isValidRow(row);
 
     }
 

@@ -235,43 +235,40 @@ public class Board {
     }
 
 
-    public void readRow(String row[]) {
+    public String[] readRow() {
 
+        String[] row;
 
-        String row[] = new String[9];
         String tmp = In.readLine();
 
         row = tmp.split(" ");
 
+        return row;
     }
 
     public void checkField() {
 
         int i = 0;
 
-        String[] row = new String[9];
+        String[] row = readRow();
 
-        readRow(row);
+        readRow();
         while (i < 8 && isValidRow(row) == true) {
 
-            readRow(row);
             isValidRow(row);
 
             i++;
+         row = readRow();
         }
-
-    }
-
-    public void readColum() {
-
-
     }
 
 
     public void isValidColum() {
 
+        for (int i = 0; i < 9 ; i++) {
 
+
+        }
     }
 }
-
 
