@@ -258,14 +258,14 @@ public class Board {
             isValidRow(row);
 
             i++;
-         row = readRow();
+            row = readRow();
         }
     }
 
 
     public void isValidColum() {
 
-        for (int i = 0; i < 9 ; i++) {
+        for (int i = 0; i < 9; i++) {
 
 
         }
