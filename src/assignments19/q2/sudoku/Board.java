@@ -5,17 +5,37 @@ import libs.inout.Out;
 
 public class Board {
 
-    String[][] field = new String[9][9];
 
-    public void printField() {
+    String[][] boardValue = new String[9][9];
+    int countColumn= 0;
+    int countRow= 0;
 
-        int j;
+    public boolean checkBoard() {
+
+            while(countRow < 9 ||countColumn < 9 ){
+            if (!isValidRow(readRow())) {
+                return false;
+            }
+
+            if (!isValidColumn(readColumn())) {
+                return false;
+            }
+
+            if (!isValidField(readField())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void printBoard(){
 
         Out.println("---------------------------------------");
         for (int i = 0; i < 9; i++) {
 
-            for (j = 0; j < 9; j++) {
-                Out.print(" | " + field[i][j]);
+            for (int j = 0; j < 9; j++) {
+                Out.print(" | " + boardValue[i][j]);
 
             }
             Out.print(" |");
@@ -25,162 +45,86 @@ public class Board {
         }
     }
 
-    public void readField() {
-        int j;
+    public void readBoard() {
 
         for (int i = 0; i < 9; i++) {
 
-            for (j = 0; j < 9; j++) {
-                field[i][j] = In.readWord();
+            for (int j = 0; j < 9; j++) {
+                boardValue[i][j] = In.readWord();
 
             }
         }
     }
 
-    public boolean checkBoard() {
+    public String[] readRow() {
 
-        //checks row
-        for (int j = 0; j < 9; j++) {
+        String[] row = new String[9];
 
-            int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
+        for (int i = 0; i < 9; i++) {
 
-            for (int i = 0; i < 9; i++) {
-                switch (field[i][j]) {
-
-                    case "1":
-                        count1++;
-                        break;
-                    case "2":
-                        count2++;
-                        break;
-                    case "3":
-                        count3++;
-                        break;
-                    case "4":
-                        count4++;
-                        break;
-                    case "5":
-                        count5++;
-                        break;
-                    case "6":
-                        count6++;
-                        break;
-                    case "7":
-                        count7++;
-                        break;
-                    case "8":
-                        count8++;
-                        break;
-                    case "9":
-                        count9++;
-                        break;
-                }
-            }
-
-            if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
-
-                Out.println("fehler das sudoku ist falsch");
-                return false;
-            }
+            if( countRow < 9)
+            row[i] = boardValue[i][countRow];
         }
-        //check colums
 
-        for (int j = 0; j < 9; j++) {
+        countRow++;
+        return row;
+    }
 
-            int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
+    public String[] readColumn() {
 
+        String[] column = new String[9];
 
             for (int i = 0; i < 9; i++) {
 
-                switch (field[i][j]) {
-
-                    case "1":
-                        count1++;
-                        break;
-                    case "2":
-                        count2++;
-                        break;
-                    case "3":
-                        count3++;
-                        break;
-                    case "4":
-                        count4++;
-                        break;
-                    case "5":
-                        count5++;
-                        break;
-                    case "6":
-                        count6++;
-                        break;
-                    case "7":
-                        count7++;
-                        break;
-                    case "8":
-                        count8++;
-                        break;
-                    case "9":
-                        count9++;
-                        break;
-                }
-            }
-
-            if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
-
-                Out.println("fehler das sudoku ist falsch");
-                return false;
-
-            }
-
+                column[i] = boardValue[countColumn][i];
         }
 
-        //check 3x3 Field
+        countColumn++;
+        return column;
+    }
 
+    public boolean isValidColumn(String column[]) {
+        int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
+        for (int i = 0; i < 9; i++) {
 
-        for (int k = 0; k < 3; k++) {
-            int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
+            switch (column[i]) {
 
-            for (int l = 0; l < 3; l++) {
-
-                switch (field[k][l]) {
-
-                    case "1":
-                        count1++;
-                        break;
-                    case "2":
-                        count2++;
-                        break;
-                    case "3":
-                        count3++;
-                        break;
-                    case "4":
-                        count4++;
-                        break;
-                    case "5":
-                        count5++;
-                        break;
-                    case "6":
-                        count6++;
-                        break;
-                    case "7":
-                        count7++;
-                        break;
-                    case "8":
-                        count8++;
-                        break;
-                    case "9":
-                        count9++;
-                        break;
-                }
+                case "1":
+                    count1++;
+                    break;
+                case "2":
+                    count2++;
+                    break;
+                case "3":
+                    count3++;
+                    break;
+                case "4":
+                    count4++;
+                    break;
+                case "5":
+                    count5++;
+                    break;
+                case "6":
+                    count6++;
+                    break;
+                case "7":
+                    count7++;
+                    break;
+                case "8":
+                    count8++;
+                    break;
+                case "9":
+                    count9++;
+                    break;
+                default:
+                    return false;
             }
-
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
-                Out.println("fehler das sudoku ist falsch");
                 return false;
-
             }
         }
-        Out.print("Das Soduko ist richtig");
+
         return true;
     }
 
@@ -224,51 +168,77 @@ public class Board {
             }
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
 
-                Out.println("fehler das sudoku ist falsch");
                 return false;
-
             }
         }
-        Out.print("Das Soduko ist richtig");
 
         return true;
     }
 
 
-    public String[] readRow() {
+    public String[] readField() {
+        String[] field = new String[9];
 
-        String[] row;
+        int val = 0;
 
-        String tmp = In.readLine();
+        for(int j = 0; j < 3; j++) {
 
-        row = tmp.split(" ");
+            for(int i = 0; i < 3; i++) {
 
-        return row;
-    }
-
-    public void checkField() {
-
-        int i = 0;
-
-        String[] row = readRow();
-
-        readRow();
-        while (i < 8 && isValidRow(row) == true) {
-
-            isValidRow(row);
-
-            i++;
-            row = readRow();
+                field[val] = boardValue[j][i];
+                val++;
+            }
         }
+
+        return field;
     }
 
 
-    public void isValidColum() {
+    public boolean isValidField(String[] field) {
 
+
+            int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
         for (int i = 0; i < 9; i++) {
 
+                switch (field[i]) {
 
-        }
+                    case "1":
+                        count1++;
+                        break;
+                    case "2":
+                        count2++;
+                        break;
+                    case "3":
+                        count3++;
+                        break;
+                    case "4":
+                        count4++;
+                        break;
+                    case "5":
+                        count5++;
+                        break;
+                    case "6":
+                        count6++;
+                        break;
+                    case "7":
+                        count7++;
+                        break;
+                    case "8":
+                        count8++;
+                        break;
+                    case "9":
+                        count9++;
+                        break;
+                    default:
+                        return false;
+                }
+            }
+            if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
+
+                return false;
+            }
+
+
+            return true;
     }
 }
-

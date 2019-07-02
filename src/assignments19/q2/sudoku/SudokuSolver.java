@@ -1,6 +1,7 @@
 package assignments19.q2.sudoku;
 
 import libs.inout.In;
+import libs.inout.Out;
 
 public class SudokuSolver {
 
@@ -12,9 +13,16 @@ public class SudokuSolver {
 
         In.open(filename);
 
-        board.checkField();
+        board.readBoard();
+        board.printBoard();
+        board.checkBoard();
 
+        if(board.checkBoard()){
 
+            Out.println("the sudoku is solved correctly");
+        } else {
+
+            Out.println("the soduko is solved wrong");
+        }
     }
-
 }
