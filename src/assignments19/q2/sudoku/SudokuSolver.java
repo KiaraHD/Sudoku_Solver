@@ -16,9 +16,9 @@ public class SudokuSolver {
         board.solve();
         board.printBoard();
 
-        if(board.checkBoard()){
 
-            Out.println("the sudoku is solved correctly");
+      if (board.checkBoard()){
+           Out.println("the sudoku is solved correctly");
         } else {
 
             Out.println("the soduko is solved wrong");

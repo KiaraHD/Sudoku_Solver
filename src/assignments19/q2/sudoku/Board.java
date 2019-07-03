@@ -239,55 +239,66 @@ public class Board {
         return true;
     }
 
+
+    private boolean containedInRow(int row, int number) {
+
+        for (int i = 0; i < 9; i++) {
+
+            if (boardValue[i][row].equals(Integer.toString(number))) ;
+
+            return true;
+        }
+        return false;
+    }
+
+    private boolean containedInColumn(int col, int number) {
+
+        for (int i = 0; i < 9; i++) {
+
+            if (boardValue[i][col].equals(Integer.toString(number))) ;
+
+            return true;
+        }
+        return false;
+    }
+
+    private boolean containedInField(int row, int col, int number) {
+
+        for (int i = row; i < row + 3; i++) {
+            for (int j = col; j < col + 3; j++) {
+
+                if (boardValue[i][j].equals(Integer.toString(number))) {
+
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
+    }
+
+    private boolean isValid(int row, int col, int number) {
+
+        return !(containedInRow(row, number) || containedInColumn(col, number) || containedInField(row, col, number));
+    }
+
     public boolean solve() {
-        for (int i = 0; i < 9; i++) { //goes through all fields on the board
+
+        for (int i = 0; i < 9; i++) {
+
             for (int j = 0; j < 9; j++) {
 
-                if (boardValue[i][j] == "_") { //checks if field is empty
+                if (boardValue[i][j].equals("_")) {
 
-                    for (int number = 1; number <= 9; number++) { //goes through all valid numbers(1-9) and check if they are correct
+                    for (int number = 1; number <= 9; number++) {
 
-                        if (checkBoard()) {
-                            switch (number) {   //just because it's a string array to insert the numbers
+                        if (isValid(i, j, number)) {
+                            Out.println("test");
 
-                                case 1:
-                                    boardValue[i][j] = "1";
-                                    break;
+                            boardValue[i][j] = Integer.toString(number);
 
-                                case 2:
-                                    boardValue[i][j] = "2";
-                                    break;
-
-                                case 3:
-                                    boardValue[i][j] = "3";
-                                    break;
-
-                                case 4:
-                                    boardValue[i][j] = "4";
-                                    break;
-
-                                case 5:
-                                    boardValue[i][j] = "5";
-                                    break;
-
-                                case 6:
-                                    boardValue[i][j] = "6";
-                                    break;
-
-                                case 7:
-                                    boardValue[i][j] = "7";
-                                    break;
-
-                                case 8:
-                                    boardValue[i][j] = "8";
-                                    break;
-
-                                case 9:
-                                    boardValue[i][j] = "9";
-                                    break;
-                            }
-
-                            if (solve()) {
+                            if (solve()){
                                 return true;
                             } else {
                                 boardValue[i][j] = "_";
