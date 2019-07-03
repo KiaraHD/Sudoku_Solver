@@ -244,9 +244,10 @@ public class Board {
 
         for (int i = 0; i < 9; i++) {
 
-            if (boardValue[i][row].equals(Integer.toString(number))) ;
+            if (boardValue[i][row].equals(Integer.toString(number))) {
 
-            return true;
+                return true;
+            }
         }
         return false;
     }
@@ -255,9 +256,10 @@ public class Board {
 
         for (int i = 0; i < 9; i++) {
 
-            if (boardValue[i][col].equals(Integer.toString(number))) ;
+            if (boardValue[i][col].equals(Integer.toString(number))) {
 
-            return true;
+                return true;
+            }
         }
         return false;
     }
@@ -272,7 +274,6 @@ public class Board {
                     return true;
                 }
             }
-
         }
 
         return false;
@@ -283,7 +284,7 @@ public class Board {
         return !(containedInRow(row, number) || containedInColumn(col, number) || containedInField(row, col, number));
     }
 
-    public boolean solve() {
+    public Board solve(Board b) {
 
         for (int i = 0; i < 9; i++) {
 
@@ -298,17 +299,15 @@ public class Board {
 
                             boardValue[i][j] = Integer.toString(number);
 
-                            if (solve()){
-                                return true;
-                            } else {
-                                boardValue[i][j] = "_";
-                            }
+                            return b.solve(b);
+                        } else {
+                            boardValue[i][j] = "_";
                         }
                     }
-                    return false;
                 }
+                return null;
             }
         }
-        return true;
+        return b;
     }
 }

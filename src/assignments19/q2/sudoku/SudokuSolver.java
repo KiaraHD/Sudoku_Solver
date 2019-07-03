@@ -13,7 +13,7 @@ public class SudokuSolver {
         In.open(filename);
 
         board.readBoard();
-        board.solve();
+        board.solve(board);
         board.printBoard();
 
 
