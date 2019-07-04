@@ -244,7 +244,7 @@ public class Board {
 
         for (int i = 0; i < 9; i++) {
 
-            if (boardValue[i][row].equals(Integer.toString(number))) {
+            if (boardValue[row][i].equals(Integer.toString(number))) {
 
                 return true;
             }
@@ -265,6 +265,8 @@ public class Board {
     }
 
     private boolean containedInField(int row, int col, int number) {
+        row = row / 3 * 3;
+        col = col / 3 * 3;
 
         for (int i = row; i < row + 3; i++) {
             for (int j = col; j < col + 3; j++) {
@@ -293,19 +295,17 @@ public class Board {
                 if (boardValue[i][j].equals("_")) {
 
                     for (int number = 1; number <= 9; number++) {
-
                         if (isValid(i, j, number)) {
-                            Out.println("test");
 
                             boardValue[i][j] = Integer.toString(number);
 
                             return b.solve(b);
                         } else {
-                            boardValue[i][j] = "_";
+                            boardValue[i][j].equals("_");
                         }
                     }
+                    return null;
                 }
-                return null;
             }
         }
         return b;
