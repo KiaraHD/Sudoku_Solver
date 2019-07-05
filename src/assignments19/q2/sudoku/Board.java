@@ -286,7 +286,7 @@ public class Board {
         return !(containedInRow(row, number) || containedInColumn(col, number) || containedInField(row, col, number));
     }
 
-    public Board solve(Board b) {
+    public boolean solve() {
 
         for (int i = 0; i < 9; i++) {
 
@@ -299,15 +299,17 @@ public class Board {
 
                             boardValue[i][j] = Integer.toString(number);
 
-                            return b.solve(b);
-                        } else {
-                            boardValue[i][j].equals("_");
+                            if (solve()) {
+                                return true;
+                            } else {
+                                boardValue[i][j] = ("_");
+                            }
                         }
                     }
-                    return null;
+                    return false;
                 }
             }
         }
-        return b;
+        return true;
     }
 }
