@@ -27,20 +27,21 @@ public class SudokuSolver {
             case 2:
                 solve(board);
                 break;
-             default:
-                 return;
+            default:
+                return;
         }
     }
 
     public static void check(Board board) {
 
-        board.printBoard();
-
         if (board.checkBoard()) {
-            Out.println("the sudoku is solved correctly");
-        } else {
 
-            Out.println("the soduko is solved wrong");
+            Out.println("The sudoku is solved correctly");
+
+        } else{
+
+            Out.println("The sudoku is solved wrong or it's not solved yet");
+
         }
     }
 
@@ -50,10 +51,13 @@ public class SudokuSolver {
         board.printBoard();
 
         if (board.checkBoard()) {
-            Out.println("there was a solution - It's solved correctly");
+
+            Out.println("There was a solution to the sudoku");
+
         } else {
 
-            Out.println("Error - there was so solution to the given sudoku");
+            Out.println("It's not possible to solve the sudoku");
+
         }
     }
 }

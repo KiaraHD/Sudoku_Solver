@@ -55,7 +55,7 @@ public class Board {
         }
     }
 
-    public String[] readRow() {
+    private String[] readRow() {
 
         String[] row = new String[9];
 
@@ -69,7 +69,7 @@ public class Board {
         return row;
     }
 
-    public String[] readColumn() {
+    private String[] readColumn() {
 
         String[] column = new String[9];
 
@@ -81,10 +81,10 @@ public class Board {
         return column;
     }
 
-    public boolean isValidColumn(String column[]) {
+    private boolean isValidColumn(String column[]) {
         int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
-        for (int i = 0; i < 9; i++) {
 
+        for (int i = 0; i < 9; i++) {
             switch (column[i]) {
 
                 case "1":
@@ -114,13 +114,10 @@ public class Board {
                 case "9":
                     count9++;
                     break;
-                case "_":
-                    break;
                 default:
                     return false;
             }
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
-
                 return false;
             }
         }
@@ -128,7 +125,7 @@ public class Board {
         return true;
     }
 
-    public boolean isValidRow(String row[]) {
+    private boolean isValidRow(String row[]) {
 
         int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
         for (int i = 0; i < 9; i++) {
@@ -162,8 +159,7 @@ public class Board {
                 case "9":
                     count9++;
                     break;
-                case "_":
-                    break;
+
                 default:
                     return false;
             }
@@ -175,7 +171,7 @@ public class Board {
         return true;
     }
 
-    public String[] readField() {
+    private String[] readField() {
         String[] field = new String[9];
 
         int val = 0;
@@ -192,7 +188,7 @@ public class Board {
         return field;
     }
 
-    public boolean isValidField(String[] field) {
+    private boolean isValidField(String[] field) {
 
         int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0, count7 = 0, count8 = 0, count9 = 0;
         for (int i = 0; i < 9; i++) {
@@ -227,8 +223,10 @@ public class Board {
                     count9++;
                     break;
                 case "_":
-                    break;
+                    Out.println("The sudoku isn't solved so far");
+                    return false;
                 default:
+                    Out.println("The sudoku isn't solved right");
                     return false;
             }
         }
