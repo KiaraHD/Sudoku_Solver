@@ -54,17 +54,6 @@ public class Board {
         }
     }
 
-    public void readBoard() {
-
-        for (int i = 0; i < 9; i++) {
-
-            for (int j = 0; j < 9; j++) {
-                boardValue[i][j] = In.readWord();
-
-            }
-        }
-    }
-
     private String[] readRow(int numberOfRow) {
 
         String[] row = new String[9];
@@ -244,7 +233,6 @@ public class Board {
         return true;
     }
 
-
     private boolean containedInRow(int row, int number) {
 
         for (int i = 0; i < 9; i++) {
@@ -291,7 +279,6 @@ public class Board {
         return !(containedInRow(row, number) || containedInColumn(col, number) || containedInField(row, col, number));
     }
 
-
     public boolean solve() {
 
         for (int i = 0; i < 9; i++) {
@@ -319,6 +306,14 @@ public class Board {
         return true;
     }
 
+    public String[][] getBoardValue() {
+        return boardValue;
+    }
+
+    public void setBoardValue(String[][] boardValue) {
+        this.boardValue = boardValue;
+    }
+
     @Override
     public boolean equals(Object obj) {
 
@@ -327,14 +322,13 @@ public class Board {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
 
-                if (!(boardValue[i][j].equals(other.boardValue[i][j]))) {
+                if (!(boardValue[i][j].equals(other.getBoardValue()[i][j]))) {
 
                     return false;
 
                 }
             }
         }
-
         return true;
     }
 
@@ -346,7 +340,7 @@ public class Board {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
 
-                clone.boardValue[i][j] = boardValue[i][j];
+                clone.getBoardValue()[i][j] = boardValue[i][j];
             }
         }
         return clone;

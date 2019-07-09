@@ -10,9 +10,8 @@ public class SudokuSolver {
         Board board = new Board();
 
         String filename = "C:\\Users\\AK121082\\IdeaProjects\\ITL\\src\\assignments19\\q2\\sudoku\\input.txt";
-        In.open(filename);
-        board.readBoard();
-        In.close();
+
+        board.setBoardValue(readData(filename));
 
         Out.println("do you want to check or solve a sudoku?");
         Out.println("[1] check");
@@ -59,5 +58,21 @@ public class SudokuSolver {
             Out.println("It's not possible to solve the sudoku");
 
         }
+    }
+
+    public static String[][] readData(String file) {
+
+        In.open(file);
+
+        String[][] boardData = new String[9][9];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                boardData[i][j] = In.readWord();
+
+            }
+        }
+    return boardData;
     }
 }
