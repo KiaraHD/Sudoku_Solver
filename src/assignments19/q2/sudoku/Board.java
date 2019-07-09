@@ -5,23 +5,33 @@ import libs.inout.Out;
 
 public class Board {
 
-    String[][] boardValue = new String[9][9];
-    int countColumn = 0;
-    int countRow = 0;
+    private String[][] boardValue = new String[9][9];
 
     public boolean checkBoard() {
 
-        while (countRow < 9 || countColumn < 9) {
-            if (!isValidRow(readRow())) {
+
+        for (int row = 0; row < 9; row++) {
+
+            if (!isValidRow(readRow(row))) {
                 return false;
             }
+        }
 
-            if (!isValidColumn(readColumn())) {
+
+        for (int col = 0; col < 9; col++) {
+
+            if (!isValidColumn(readColumn(col))) {
                 return false;
             }
+        }
 
-            if (!isValidField(readField())) {
-                return false;
+        for (int col = 0; col < 9; col++) {
+            for (int row = 0; row < 9; row++) {
+
+                if (!isValidField(readField(row, col))) {
+                    return false;
+                }
+
             }
         }
 
@@ -55,30 +65,44 @@ public class Board {
         }
     }
 
-    private String[] readRow() {
+    private String[] readRow(int numberOfRow) {
 
         String[] row = new String[9];
 
         for (int i = 0; i < 9; i++) {
 
-            if (countRow < 9)
-                row[i] = boardValue[i][countRow];
+            row[i] = boardValue[i][numberOfRow];
         }
 
-        countRow++;
         return row;
     }
 
-    private String[] readColumn() {
+    private String[] readColumn(int numberOfCol) {
 
         String[] column = new String[9];
 
         for (int i = 0; i < 9; i++) {
 
-            column[i] = boardValue[countColumn][i];
+            column[i] = boardValue[numberOfCol][i];
         }
-        countColumn++;
         return column;
+    }
+
+    private String[] readField(int numberOfRow, int numberOfCol) {
+        String[] field = new String[9];
+        int val = 0;
+        numberOfRow = numberOfRow / 3 * 3;
+        numberOfCol = numberOfCol / 3 * 3;
+
+        for (int i = numberOfRow; i < numberOfRow + 3; i++) {
+            for (int j = numberOfCol; j < numberOfCol + 3; j++) {
+
+                field[val] = boardValue[j][i];
+                val++;
+            }
+        }
+
+        return field;
     }
 
     private boolean isValidColumn(String column[]) {
@@ -169,23 +193,6 @@ public class Board {
             }
         }
         return true;
-    }
-
-    private String[] readField() {
-        String[] field = new String[9];
-
-        int val = 0;
-
-        for (int j = 0; j < 3; j++) {
-
-            for (int i = 0; i < 3; i++) {
-
-                field[val] = boardValue[j][i];
-                val++;
-            }
-        }
-
-        return field;
     }
 
     private boolean isValidField(String[] field) {
@@ -284,6 +291,7 @@ public class Board {
         return !(containedInRow(row, number) || containedInColumn(col, number) || containedInField(row, col, number));
     }
 
+
     public boolean solve() {
 
         for (int i = 0; i < 9; i++) {
@@ -309,5 +317,38 @@ public class Board {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        Board other = (Board) obj;
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                if (!(boardValue[i][j].equals(other.boardValue[i][j]))) {
+
+                    return false;
+
+                }
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    protected Object clone() {
+
+        Board clone = new Board();
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                clone.boardValue[i][j] = boardValue[i][j];
+            }
+        }
+        return clone;
     }
 }
