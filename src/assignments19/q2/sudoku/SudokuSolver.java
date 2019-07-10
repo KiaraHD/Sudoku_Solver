@@ -37,10 +37,9 @@ public class SudokuSolver {
 
             Out.println("The sudoku is solved correctly");
 
-        } else{
+        } else {
 
             Out.println("The sudoku is solved wrong or it's not solved yet");
-
         }
     }
 
@@ -56,7 +55,6 @@ public class SudokuSolver {
         } else {
 
             Out.println("It's not possible to solve the sudoku");
-
         }
     }
 
@@ -70,9 +68,10 @@ public class SudokuSolver {
             for (int j = 0; j < 9; j++) {
 
                 boardData[i][j] = In.readWord();
-
             }
         }
-    return boardData;
+
+        In.close();
+        return boardData;
     }
 }

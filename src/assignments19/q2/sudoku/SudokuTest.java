@@ -15,7 +15,7 @@ public class SudokuTest {
     String fileTestFalse = "C:\\Users\\AK121082\\IdeaProjects\\ITL\\src\\assignments19\\q2\\sudoku\\SudokuTestFalse";
     String fileSolution = "C:\\Users\\AK121082\\IdeaProjects\\ITL\\src\\assignments19\\q2\\sudoku\\SudokuSolution";
 
-    public String[][] readData(String file){
+    public String[][] readData(String file) {
 
         In.open(file);
 
@@ -25,7 +25,6 @@ public class SudokuTest {
             for (int j = 0; j < 9; j++) {
 
                 boardData[i][j] = In.readWord();
-
             }
         }
 
@@ -43,7 +42,6 @@ public class SudokuTest {
 
     @Test
     public void solveEqualsTrue() {
-
 
         result.solve();
 
@@ -71,9 +69,57 @@ public class SudokuTest {
     @Test
     public void testEquals() {
 
-        Board clone = (Board) result.clone();
+        Board clone = (Board) solution.clone();
 
-        assertFalse(result == clone);
+        assertFalse(solution == clone);
         assertTrue(solution.equals(clone));
+    }
+
+    @Test
+    public void testContainedRowTrue() {
+
+        assertTrue(result.containedInRow(2, 3));
+    }
+
+    @Test
+    public void testContainedRowFalse() {
+
+        assertFalse(result.containedInRow(2, 4));
+    }
+
+    @Test
+    public void testContainedColumnTrue() {
+
+        assertTrue(result.containedInColumn(3, 1));
+    }
+
+    @Test
+    public void testContainedColumnFalse() {
+
+        assertFalse(result.containedInColumn(3, 4));
+    }
+
+    @Test
+    public void testContainedFieldTrue() {
+
+        assertTrue(result.containedInField(0, 2, 4));
+    }
+
+    @Test
+    public void testContainedFieldFalse() {
+
+        assertFalse(result.containedInField(2, 0, 2));
+    }
+
+    @Test
+    public void testValidTrue() {
+
+        assertTrue(result.isValid(0, 2, 7));
+    }
+
+    @Test
+    public void testValidFalse() {
+
+        assertFalse(result.isValid(0, 2, 3));
     }
 }

@@ -1,6 +1,5 @@
 package assignments19.q2.sudoku;
 
-import libs.inout.In;
 import libs.inout.Out;
 
 public class Board {
@@ -17,7 +16,6 @@ public class Board {
             }
         }
 
-
         for (int col = 0; col < 9; col++) {
 
             if (!isValidColumn(readColumn(col))) {
@@ -31,7 +29,6 @@ public class Board {
                 if (!isValidField(readField(row, col))) {
                     return false;
                 }
-
             }
         }
 
@@ -42,15 +39,14 @@ public class Board {
 
         Out.println("---------------------------------------");
         for (int i = 0; i < 9; i++) {
-
             for (int j = 0; j < 9; j++) {
-                Out.print(" | " + boardValue[i][j]);
 
+                Out.print(" | " + boardValue[i][j]);
             }
+
             Out.print(" |");
             Out.println();
             Out.println("--------------------------------------");
-
         }
     }
 
@@ -62,7 +58,6 @@ public class Board {
 
             row[i] = boardValue[i][numberOfRow];
         }
-
         return row;
     }
 
@@ -79,7 +74,9 @@ public class Board {
 
     private String[] readField(int numberOfRow, int numberOfCol) {
         String[] field = new String[9];
+
         int val = 0;
+
         numberOfRow = numberOfRow / 3 * 3;
         numberOfCol = numberOfCol / 3 * 3;
 
@@ -90,7 +87,6 @@ public class Board {
                 val++;
             }
         }
-
         return field;
     }
 
@@ -99,7 +95,6 @@ public class Board {
 
         for (int i = 0; i < 9; i++) {
             switch (column[i]) {
-
                 case "1":
                     count1++;
                     break;
@@ -130,11 +125,11 @@ public class Board {
                 default:
                     return false;
             }
+
             if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -144,7 +139,6 @@ public class Board {
         for (int i = 0; i < 9; i++) {
 
             switch (row[i]) {
-
                 case "1":
                     count1++;
                     break;
@@ -190,7 +184,6 @@ public class Board {
         for (int i = 0; i < 9; i++) {
 
             switch (field[i]) {
-
                 case "1":
                     count1++;
                     break;
@@ -218,22 +211,19 @@ public class Board {
                 case "9":
                     count9++;
                     break;
-                case "_":
-                    Out.println("The sudoku isn't solved so far");
-                    return false;
                 default:
-                    Out.println("The sudoku isn't solved right");
                     return false;
             }
         }
 
         if (count1 > 1 || count2 > 1 || count3 > 1 || count4 > 1 || count5 > 1 || count6 > 1 || count7 > 1 || count8 > 1 || count9 > 1) {
+
             return false;
         }
         return true;
     }
 
-    private boolean containedInRow(int row, int number) {
+    public boolean containedInRow(int row, int number) {
 
         for (int i = 0; i < 9; i++) {
 
@@ -245,7 +235,7 @@ public class Board {
         return false;
     }
 
-    private boolean containedInColumn(int col, int number) {
+    public boolean containedInColumn(int col, int number) {
 
         for (int i = 0; i < 9; i++) {
 
@@ -257,7 +247,7 @@ public class Board {
         return false;
     }
 
-    private boolean containedInField(int row, int col, int number) {
+    public boolean containedInField(int row, int col, int number) {
         row = row / 3 * 3;
         col = col / 3 * 3;
 
@@ -270,11 +260,10 @@ public class Board {
                 }
             }
         }
-
         return false;
     }
 
-    private boolean isValid(int row, int col, int number) {
+    public boolean isValid(int row, int col, int number) {
 
         return !(containedInRow(row, number) || containedInColumn(col, number) || containedInField(row, col, number));
     }
@@ -282,12 +271,12 @@ public class Board {
     public boolean solve() {
 
         for (int i = 0; i < 9; i++) {
-
             for (int j = 0; j < 9; j++) {
 
                 if (boardValue[i][j].equals("_")) {
 
                     for (int number = 1; number <= 9; number++) {
+
                         if (isValid(i, j, number)) {
 
                             boardValue[i][j] = Integer.toString(number);
@@ -295,6 +284,7 @@ public class Board {
                             if (solve()) {
                                 return true;
                             } else {
+
                                 boardValue[i][j] = ("_");
                             }
                         }
@@ -325,7 +315,6 @@ public class Board {
                 if (!(boardValue[i][j].equals(other.getBoardValue()[i][j]))) {
 
                     return false;
-
                 }
             }
         }
